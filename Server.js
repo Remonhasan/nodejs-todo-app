@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
+const routes = require('../Backend/routes/todoRoute')
+
 require('dotenv').config()
 
 const app = express()
@@ -10,5 +12,7 @@ mongoose
 .connect(process.env.MONGOBD_URL)
 .then(() => console.log(`Connected to MONGODB!`))
 .catch((err) => console.log(err))
+
+app.use(routes)
 
 app.listen( PORT, () => console.log(`Listening to the port ${PORT}`))
